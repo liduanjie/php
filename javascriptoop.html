@@ -1,0 +1,155 @@
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>texting</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="http://static.yedadou.com/public??/assets/css/bootstrap.css,/assets/css/font-awesome.css,/assets/css/jquery-ui.css,/assets/css/jquery-ui.css,/assets/css/ace-fonts.css,/assets/css/ace.css,/css/public.css,/admin/css/index.css" />
+	<style type="text/css">
+		.add_quan{
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+
+	<ul class="list-inline pre-scrollable">
+		<li>
+			<img src="http://placehold.it/200x200" class="img-round">
+		</li>
+		<li>
+			<img src="http://placehold.it/200x200" class="img-round">
+		</li>
+		<li>
+			<img src="http://placehold.it/200x200" class="img-round">
+		</li>
+		<li>
+			<img src="http://placehold.it/200x200" class="img-round">
+		</li>
+		<li>
+			<img src="http://placehold.it/200x200" class="img-round">
+		</li>
+	</ul>
+
+<div class="card">
+	<div class="list-item">
+		<span class="price">90</span>
+		<span>
+			<i class="fa fa-plus add_quan" data-plus="plus"></i>
+			<input type="text" value="1" class="quantity">
+			<i class="fa fa-minus add_quan" data-plus="minus"></i>
+		</span>
+	</div>
+	<div class="list-item">
+		<span class="price">90</span>
+		<span>
+			<i class="fa fa-plus add_quan"></i>
+			<input type="text" value="1" class="quantity">
+			<i class="fa fa-minus add_quan"></i>
+		</span>
+	</div>
+	<div class="card-footer">
+		10000
+	</div>
+</div>
+<div class="card">
+	<div class="list-item">
+		<span class="price">90</span>
+		<span>
+			<i class="fa fa-plus add_quan" data-plus="plus"></i>
+			<input type="text" value="1" class="quantity">
+			<i class="fa fa-minus add_quan" data-plus="minus"></i>
+		</span>
+	</div>
+	<div class="list-item">
+		<span class="price">90</span>
+		<span>
+			<i class="fa fa-plus add_quan"></i>
+			<input type="text" value="1" class="quantity">
+			<i class="fa fa-minus add_quan"></i>
+		</span>
+	</div>
+	<div class="card-footer">
+		this is itemprice
+	</div>
+</div>
+<div class="total_price"></div>
+
+<script src="http://static.yedadou.com/public/assets/js/jquery.js"></script>
+
+<script type="text/javascript">
+	$(function () {
+
+		var card = {};
+		card.action = function () {
+			this.data = {
+				'itemprice': 100,
+				'cardprice': 180
+
+			};
+			this.inputchange = function($input) {
+				$button = $input.closest('.list-item').find('add_quan[data-plus="plus"]');
+				this.updatequantity($button);
+				console.log('sofios')
+			}
+
+			this.updatequantity = function ($button) {
+				var $input = $button.closest('.list-item').find('.quantity');
+				var judge = $button.data('plus');
+				var quantity = $input.val();
+				var price = $button.closest('.list-item').find('.price');
+
+				if (judge == 'plus') {
+					quantity++;
+					$input.val(quantity);
+					var cardprice = this.data.cardprice = this.data.cardprice + parseFloat(price.html())
+					$input.closest('.card').find('.card-footer').html(cardprice)
+				} else {
+					quantity--;
+					if (quantity < 1) {
+						alert('数量不能小于1');
+						return;
+					}
+					$input.val(quantity);
+					var cardprice = this.data.cardprice = this.data.cardprice - parseFloat(price.html())
+					$input.closest('.card').find('.card-footer').html(cardprice)
+
+				}
+
+
+			}
+
+			this.updatecard = function ($card) {
+				for (var i=0; i<arr.length; i++) {
+					console.log(arr[i].data.cardprice);
+				}
+			}
+
+			this.init = function ($card) {
+				var that =  this;
+				var $input = $card.find('.price');
+				var $button = $card.find('.add_quan');
+				$button.click(function () {
+					that.updatequantity($(this));
+				})
+				$input.keyup(function () {
+					that.inputchange($(this));
+				})
+				this.updatecard();
+			}
+		}
+
+		var arr = [];
+		$('.card').each(function(k, v) {
+			var obj = new card.action();
+			obj.init($(v));
+			arr.push(obj);
+		})
+
+		console.log(arr)
+
+
+	})
+
+</script>
+</body>
+</html>

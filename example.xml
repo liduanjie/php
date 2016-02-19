@@ -1,0 +1,36 @@
+<producers>
+	<produce>
+		<name>
+			alex
+		</name>
+		<age>27</age>
+		<show>
+			<showname>a show</showname>
+			<showdate>12th december 2010</showdate>
+		</show>
+		<show>
+			<showname>another show</showname>
+			<showdate>4th july 2010</showdate>
+		</show>
+	</produce>
+	<produce>
+		<name>
+			billy
+		</name>
+		<age>17</age>
+		<show>
+			<showname>another show</showname>
+			<showdate>4th july 2010</showdate>
+		</show>
+	</produce>
+	<produce>
+		<name>
+			dale
+		</name>
+		<age>49</age>
+		<show>
+			<showname>a show</showname>
+			<showdate>12th december 2010</showdate>
+		</show>
+	</produce>
+</producers>
